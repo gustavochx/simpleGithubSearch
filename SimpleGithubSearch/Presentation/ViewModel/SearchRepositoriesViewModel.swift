@@ -14,14 +14,18 @@ protocol SearchRepositoriesDisplay: AnyObject {
 
 class SearchRepositoriesViewModel {
 
-    let searchRepositories = SearchRepositories(service: SearchRepositoriesServiceImplementation())
-    let page: Int = 1
     weak var display: SearchRepositoriesDisplay?
+    
+    private let searchRepositories: SearchRepositories
+    let page: Int = 1
+
+    init(searchRepositories: SearchRepositories) {
+        self.searchRepositories = searchRepositories
+    }
 
     func searchRepositories(query: String) {
         searchRepositories.searchRepositories(query: query, page: 1)
     }
-
 }
 
 extension SearchRepositoriesViewModel: SearchRepositoriesDisplayService {

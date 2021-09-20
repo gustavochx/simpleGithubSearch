@@ -5,7 +5,6 @@
 //  Created by Gustavo Henrique Frota Soares on 15/09/21.
 //
 
-import Foundation
 import Alamofire
 
 enum NetworkErrors: Error {
@@ -23,7 +22,7 @@ enum NetworkErrors: Error {
     case unexpected(String)
 }
 
-class NetworkDataSource {
+final class NetworkDataSource {
 
     func request<T: Decodable>(_ url: URLConvertible,
                                method: HTTPMethod,

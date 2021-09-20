@@ -5,9 +5,8 @@
 //  Created by Gustavo Henrique Frota Soares on 15/09/21.
 //
 
-import Foundation
 
-class SearchRepositoriesServiceImplementation: SearchRepositoriesService {
+final class SearchRepositoriesServiceImplementation: SearchRepositoriesService {
 
     let dataSource = NetworkDataSource()
 
