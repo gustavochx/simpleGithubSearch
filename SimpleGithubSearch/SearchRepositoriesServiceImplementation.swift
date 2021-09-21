@@ -10,9 +10,12 @@ final class SearchRepositoriesServiceImplementation: SearchRepositoriesService {
 
     let dataSource = NetworkDataSource()
 
-    func searchRepositories(parameters: SearchRepositorieParameters, completionHandler: @escaping ((Result<Bool, NetworkErrors>) -> Void)) {
+    func searchRepositories(parameters: SearchRepositorieParameters,
+                            completionHandler: @escaping ((Result<GithubRepositorieResponse, NetworkErrors>) -> Void)) {
 
-        let url = GithubEndpoints.searchRepositories(items: parameters.count, page: parameters.page, query: parameters.query).path
+        let url = GithubEndpoints.searchRepositories(items: parameters.count,
+                                                     page: parameters.page,
+                                                     query: parameters.query).path
 
         dataSource.request(url,
                            method: .get,
@@ -22,8 +25,7 @@ final class SearchRepositoriesServiceImplementation: SearchRepositoriesService {
 
             switch response {
             case .success(let response):
-                print(response)
-                completionHandler(.success(true))
+                completionHandler(.success(response))
             case .failure(let error):
                 completionHandler(.failure(error))
             }

@@ -12,6 +12,9 @@ class GithubSearchViewController: UIViewController {
     // MARK: - Variables
     private let viewModel: SearchRepositoriesViewModel
 
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+
     // MARK: - Life Cycle
     @available(*, unavailable)
     required init?(coder: NSCoder) {
@@ -26,6 +29,13 @@ class GithubSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.display = self
+        configureTableView()
+    }
+
+    private func configureTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UINib(nibName: "GithubSearchTableViewCell", bundle: nil), forCellReuseIdentifier: "GithubSearchTableViewCell")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -37,20 +47,20 @@ class GithubSearchViewController: UIViewController {
 extension GithubSearchViewController: SearchRepositoriesDisplay {
 
     func didDisplay() {
-        print("Wee")
+        tableView.reloadData()
     }
 
     func errorOnDisplay() {
-        print("Error :/")
+
     }
 }
 
 extension GithubSearchViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        present(GithubSearchFactory.makeDetail(searchViewModel: viewModel), animated: true, completion: nil)
     }
-    
+
 }
 
 extension GithubSearchViewController: UITableViewDataSource {
@@ -60,11 +70,15 @@ extension GithubSearchViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        viewModel.repositories.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UITableViewCell()
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GithubSearchTableViewCell", for: indexPath) as! GithubSearchTableViewCell
+
+        cell.configure(with: viewModel.repositories[indexPath.row])
+        return cell
     }
 }
 

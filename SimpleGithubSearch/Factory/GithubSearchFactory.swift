@@ -14,4 +14,9 @@ final class GithubSearchFactory {
         return GithubSearchViewController(viewModel: searchRepositoriesViewModel)
     }
 
+    static func makeDetail(searchViewModel: SearchRepositoriesViewModel) -> DetailGithubRepositorieViewController {
+        let detailGithubRepositoreViewController = DetailGithubRepositorieViewController(viewModel: searchViewModel)
+        detailGithubRepositoreViewController.modalPresentationStyle = .fullScreen
+        return detailGithubRepositoreViewController
+    }
 }

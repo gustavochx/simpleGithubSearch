@@ -15,11 +15,11 @@ struct SearchRepositorieParameters {
 
 protocol SearchRepositoriesService {
     func searchRepositories(parameters: SearchRepositorieParameters,
-                            completionHandler: @escaping((Result<Bool, NetworkErrors>) -> Void))
+                            completionHandler: @escaping((Result<GithubRepositorieResponse, NetworkErrors>) -> Void))
 }
 
 protocol SearchRepositoriesDisplayService: AnyObject {
-    func didSearchedRepositories(value: Bool)
+    func didSearchedRepositories(value: [GithubRepositorie])
     func errorOnSearchRepositories(error: String)
 }
 
@@ -34,12 +34,14 @@ class SearchRepositories {
 
     func search(query: String, page: Int, count: Int) {
 
-        let parameters = SearchRepositorieParameters(page: page, query: query, count: count)
+        let parameters = SearchRepositorieParameters(page: page,
+                                                     query: query,
+                                                     count: count)
 
         service.searchRepositories(parameters: parameters) { [weak self] result in
             switch result {
             case .success(let value):
-                self?.display?.didSearchedRepositories(value: value)
+                self?.display?.didSearchedRepositories(value: value.items ?? [])
             case .failure(let error):
                 self?.display?.errorOnSearchRepositories(error: error.localizedDescription)
             }

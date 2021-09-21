@@ -17,6 +17,8 @@ class SearchRepositoriesViewModel {
     weak var display: SearchRepositoriesDisplay?
     
     private let searchRepositories: SearchRepositories
+    var repositories: [GithubRepositorie] = []
+
     let page: Int = 1
     let count: Int = 10
 
@@ -32,7 +34,8 @@ class SearchRepositoriesViewModel {
 
 extension SearchRepositoriesViewModel: SearchRepositoriesDisplayService {
 
-    func didSearchedRepositories(value: Bool) {
+    func didSearchedRepositories(value: [GithubRepositorie]) {
+        repositories = value
         display?.didDisplay()
     }
 
