@@ -15,7 +15,7 @@ struct SearchRepositorieParameters {
 
 protocol SearchRepositoriesService {
     func searchRepositories(parameters: SearchRepositorieParameters,
-                            completionHandler: @escaping((Result<GithubRepositorieResponse, NetworkErrors>) -> Void))
+                            completionHandler: @escaping((Result<[GithubRepositorie], NetworkErrors>) -> Void))
 }
 
 protocol SearchRepositoriesDisplayService: AnyObject {
@@ -41,7 +41,7 @@ class SearchRepositories {
         service.searchRepositories(parameters: parameters) { [weak self] result in
             switch result {
             case .success(let value):
-                self?.display?.didSearchedRepositories(value: value.items ?? [])
+                self?.display?.didSearchedRepositories(value: value)
             case .failure(let error):
                 self?.display?.errorOnSearchRepositories(error: error.localizedDescription)
             }

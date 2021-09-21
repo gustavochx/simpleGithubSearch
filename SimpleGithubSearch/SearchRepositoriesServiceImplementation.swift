@@ -11,7 +11,7 @@ final class SearchRepositoriesServiceImplementation: SearchRepositoriesService {
     let dataSource = NetworkDataSource()
 
     func searchRepositories(parameters: SearchRepositorieParameters,
-                            completionHandler: @escaping ((Result<GithubRepositorieResponse, NetworkErrors>) -> Void)) {
+                            completionHandler: @escaping ((Result<[GithubRepositorie], NetworkErrors>) -> Void)) {
 
         let url = GithubEndpoints.searchRepositories(items: parameters.count,
                                                      page: parameters.page,
@@ -25,7 +25,7 @@ final class SearchRepositoriesServiceImplementation: SearchRepositoriesService {
 
             switch response {
             case .success(let response):
-                completionHandler(.success(response))
+                completionHandler(.success(response.items ?? []))
             case .failure(let error):
                 completionHandler(.failure(error))
             }
