@@ -1,15 +1,14 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '14.5'
+
+def main_pods
+  pod 'Alamofire'
+end
 
 target 'SimpleGithubSearch' do
-  # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
-  # Pods for SimpleGithubSearch
+  main_pods
 
   target 'SimpleGithubSearchTests' do
     inherit! :search_paths
-    # Pods for testing
   end
-
 end
