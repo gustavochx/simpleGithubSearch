@@ -18,9 +18,10 @@ class SearchRepositoriesViewModel {
     
     private let searchRepositories: SearchRepositories
     var repositories: [GithubRepositorie] = []
-
-    let page: Int = 1
+    var page: Int = 1
+    var isPaginating: Bool = false
     let count: Int = 10
+
 
     init(searchRepositories: SearchRepositories) {
         self.searchRepositories = searchRepositories
@@ -30,12 +31,30 @@ class SearchRepositoriesViewModel {
     func searchRepositories(query: String) {
         searchRepositories.search(query: query, page: page, count: count)
     }
+
+    func increasePage() {
+        page += 1
+    }
+
+    func enablePagination() {
+        isPaginating = true
+    }
+
+    func stopPagination() {
+        isPaginating = false
+    }
 }
 
 extension SearchRepositoriesViewModel: SearchRepositoriesDisplayService {
 
     func didSearchedRepositories(value: [GithubRepositorie]) {
-        repositories = value
+
+        if isPaginating {
+            repositories += value
+        } else {
+            repositories = value
+        }
+
         display?.didDisplay()
     }
 

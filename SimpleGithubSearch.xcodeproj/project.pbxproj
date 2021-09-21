@@ -27,6 +27,7 @@
 		2B86D41526F971AB00173129 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B86D41426F971AB00173129 /* Main.storyboard */; };
 		2B86D41826F975E200173129 /* DetailGithubRepositorieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86D41626F975E200173129 /* DetailGithubRepositorieViewController.swift */; };
 		2B86D41926F975E200173129 /* DetailGithubRepositorieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B86D41726F975E200173129 /* DetailGithubRepositorieViewController.xib */; };
+		2B86D41C26F984FF00173129 /* UIViewController+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86D41B26F984FF00173129 /* UIViewController+ActivityIndicator.swift */; };
 		670FECDAF0197F9D3703F795 /* Pods_SimpleGithubSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA31DF88C25EC6D61F8023CD /* Pods_SimpleGithubSearchTests.framework */; };
 		984B82640BF097B5567B4A03 /* Pods_SimpleGithubSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83FCC049E3748E85B58D3D2B /* Pods_SimpleGithubSearch.framework */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		2B86D41426F971AB00173129 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2B86D41626F975E200173129 /* DetailGithubRepositorieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGithubRepositorieViewController.swift; sourceTree = "<group>"; };
 		2B86D41726F975E200173129 /* DetailGithubRepositorieViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailGithubRepositorieViewController.xib; sourceTree = "<group>"; };
+		2B86D41B26F984FF00173129 /* UIViewController+ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ActivityIndicator.swift"; sourceTree = "<group>"; };
 		57463456024E7C3603B368FB /* Pods-SimpleGithubSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleGithubSearch.debug.xcconfig"; path = "Target Support Files/Pods-SimpleGithubSearch/Pods-SimpleGithubSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		5CEA7F70A9750374C369ABB3 /* Pods-SimpleGithubSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleGithubSearch.release.xcconfig"; path = "Target Support Files/Pods-SimpleGithubSearch/Pods-SimpleGithubSearch.release.xcconfig"; sourceTree = "<group>"; };
 		83FCC049E3748E85B58D3D2B /* Pods_SimpleGithubSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleGithubSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +130,7 @@
 		2B86D3B626F262D400173129 /* SimpleGithubSearch */ = {
 			isa = PBXGroup;
 			children = (
+				2B86D41A26F984EB00173129 /* Extension */,
 				2B86D40026F90EE000173129 /* Factory */,
 				2B86D3EA26F2631000173129 /* Domain */,
 				2B86D3E926F2630C00173129 /* Data */,
@@ -271,6 +274,14 @@
 				2B86D41126F96B7A00173129 /* GithubSearchTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		2B86D41A26F984EB00173129 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				2B86D41B26F984FF00173129 /* UIViewController+ActivityIndicator.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		B0A45F7AEA439DDC6233C45B /* Frameworks */ = {
@@ -455,6 +466,7 @@
 				2B86D40626F90F7900173129 /* GithubSearchViewController.swift in Sources */,
 				2B86D41826F975E200173129 /* DetailGithubRepositorieViewController.swift in Sources */,
 				2B86D40B26F95F6300173129 /* GithubRepositorieResponse.swift in Sources */,
+				2B86D41C26F984FF00173129 /* UIViewController+ActivityIndicator.swift in Sources */,
 				2B86D41226F96B7A00173129 /* GithubSearchTableViewCell.swift in Sources */,
 				2B86D3FD26F2866D00173129 /* SearchRepositories.swift in Sources */,
 				2B86D40926F914AB00173129 /* GithubRepositorie.swift in Sources */,

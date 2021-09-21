@@ -24,7 +24,7 @@ enum GithubEndpoints {
             return String(describing: environment.rawValue
                             + "search/repositories?q="
                             + query
-                            + "per_page=\(items)&page=\(page)")
+                            + "&per_page=\(items)&page=\(page)")
         }
     }
 }

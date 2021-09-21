@@ -9,11 +9,14 @@ import UIKit
 
 class GithubSearchViewController: UIViewController {
 
-    // MARK: - Variables
-    private let viewModel: SearchRepositoriesViewModel
-
+    //MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+
+    // MARK: - Variables
+    private let viewModel: SearchRepositoriesViewModel
+    var activityIndicatorView = UIActivityIndicatorView()
+    var overlayView = UIView()
 
     // MARK: - Life Cycle
     @available(*, unavailable)
@@ -29,29 +32,43 @@ class GithubSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.display = self
+        searchBar.delegate = self
         configureTableView()
-    }
-
-    private func configureTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(UINib(nibName: "GithubSearchTableViewCell", bundle: nil), forCellReuseIdentifier: "GithubSearchTableViewCell")
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.searchRepositories(query: "")
+        startLoading(with: view, overlayView: overlayView, activityView: activityIndicatorView)
+        viewModel.searchRepositories(query: "swift")
+    }
+
+    // MARK: - Main Functions -
+    private func configureTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.tableFooterView = UIView()
+        tableView.register(UINib(nibName: "GithubSearchTableViewCell", bundle: nil), forCellReuseIdentifier: "GithubSearchTableViewCell")
+    }
+}
+
+extension GithubSearchViewController: UISearchBarDelegate {
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let query = searchBar.text
+        viewModel.stopPagination()
+        viewModel.searchRepositories(query: query ?? "swift")
     }
 }
 
 extension GithubSearchViewController: SearchRepositoriesDisplay {
 
     func didDisplay() {
+        stopLoading(overlayView: overlayView, activityView: activityIndicatorView)
         tableView.reloadData()
     }
 
     func errorOnDisplay() {
-
+        stopLoading(overlayView: overlayView, activityView: activityIndicatorView)
     }
 }
 
@@ -61,6 +78,14 @@ extension GithubSearchViewController: UITableViewDelegate {
         present(GithubSearchFactory.makeDetail(searchViewModel: viewModel), animated: true, completion: nil)
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == tableView.numberOfRows(inSection: 0) - 1 {
+            startLoading(with: view, overlayView: overlayView, activityView: activityIndicatorView)
+            viewModel.increasePage()
+            viewModel.enablePagination()
+            viewModel.searchRepositories(query: "swift")
+        }
+    }
 }
 
 extension GithubSearchViewController: UITableViewDataSource {
