@@ -25,14 +25,46 @@ class GithubSearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.display = self
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.searchRepositories(query: "")
+    }
+}
+
+extension GithubSearchViewController: SearchRepositoriesDisplay {
+
+    func didDisplay() {
+        print("Wee")
+    }
+
+    func errorOnDisplay() {
+        print("Error :/")
+    }
 }
 
 extension GithubSearchViewController: UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+    }
+    
 }
 
 extension GithubSearchViewController: UITableViewDataSource {
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        UITableViewCell()
+    }
 }
+

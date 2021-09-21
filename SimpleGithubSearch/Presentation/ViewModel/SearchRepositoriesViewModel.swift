@@ -18,13 +18,15 @@ class SearchRepositoriesViewModel {
     
     private let searchRepositories: SearchRepositories
     let page: Int = 1
+    let count: Int = 10
 
     init(searchRepositories: SearchRepositories) {
         self.searchRepositories = searchRepositories
+        self.searchRepositories.display = self
     }
 
     func searchRepositories(query: String) {
-        searchRepositories.searchRepositories(query: query, page: 1)
+        searchRepositories.search(query: query, page: page, count: count)
     }
 }
 

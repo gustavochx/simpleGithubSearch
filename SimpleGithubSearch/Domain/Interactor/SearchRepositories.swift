@@ -7,8 +7,15 @@
 
 import Foundation
 
+struct SearchRepositorieParameters {
+    var page: Int
+    var query: String
+    var count: Int
+}
+
 protocol SearchRepositoriesService {
-    func searchRepositories(completionHandler: @escaping((Result<Bool, NetworkErrors>) -> Void))
+    func searchRepositories(parameters: SearchRepositorieParameters,
+                            completionHandler: @escaping((Result<Bool, NetworkErrors>) -> Void))
 }
 
 protocol SearchRepositoriesDisplayService: AnyObject {
@@ -25,9 +32,11 @@ class SearchRepositories {
         self.service = service
     }
 
-    func searchRepositories(query: String, page: Int) {
+    func search(query: String, page: Int, count: Int) {
 
-        service.searchRepositories { [weak self] result in
+        let parameters = SearchRepositorieParameters(page: page, query: query, count: count)
+
+        service.searchRepositories(parameters: parameters) { [weak self] result in
             switch result {
             case .success(let value):
                 self?.display?.didSearchedRepositories(value: value)
@@ -35,6 +44,5 @@ class SearchRepositories {
                 self?.display?.errorOnSearchRepositories(error: error.localizedDescription)
             }
         }
-        
     }
 }

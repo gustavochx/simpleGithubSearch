@@ -27,7 +27,7 @@ final class NetworkDataSource {
     func request<T: Decodable>(_ url: URLConvertible,
                                method: HTTPMethod,
                                body: [String: Any]?,
-                               headers: [String: String],
+                               headers: [String: String]?,
                                responseObject: T.Type,
                                encoding: ParameterEncoding = JSONEncoding.default,
                                completionHandler: @escaping ((Result<T, NetworkErrors>) -> Void)) {
@@ -36,7 +36,7 @@ final class NetworkDataSource {
                    method: method,
                    parameters: body,
                    encoding: encoding,
-                   headers: HTTPHeaders(headers)).responseJSON { response in
+                   headers: HTTPHeaders(headers ?? [:])).responseJSON { response in
 
                     if case .failure(let error) = self.processStatusCode(response: response) {
                         completionHandler(.failure(error))

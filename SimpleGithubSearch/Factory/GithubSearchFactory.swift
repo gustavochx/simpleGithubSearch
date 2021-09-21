@@ -7,9 +7,11 @@
 
 
 final class GithubSearchFactory {
+
     static func make() -> GithubSearchViewController {
         let searchRepositories = SearchRepositories(service: SearchRepositoriesServiceImplementation())
         let searchRepositoriesViewModel = SearchRepositoriesViewModel(searchRepositories: searchRepositories)
         return GithubSearchViewController(viewModel: searchRepositoriesViewModel)
     }
+
 }

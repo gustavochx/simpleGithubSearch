@@ -22,6 +22,8 @@
 		2B86D40226F90F4700173129 /* GithubSearchFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86D40126F90F4700173129 /* GithubSearchFactory.swift */; };
 		2B86D40626F90F7900173129 /* GithubSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86D40426F90F7900173129 /* GithubSearchViewController.swift */; };
 		2B86D40726F90F7900173129 /* GithubSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B86D40526F90F7900173129 /* GithubSearchViewController.xib */; };
+		2B86D40926F914AB00173129 /* GithubRepositorie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86D40826F914AB00173129 /* GithubRepositorie.swift */; };
+		2B86D40B26F95F6300173129 /* GithubRepositorieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86D40A26F95F6300173129 /* GithubRepositorieResponse.swift */; };
 		670FECDAF0197F9D3703F795 /* Pods_SimpleGithubSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA31DF88C25EC6D61F8023CD /* Pods_SimpleGithubSearchTests.framework */; };
 		984B82640BF097B5567B4A03 /* Pods_SimpleGithubSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83FCC049E3748E85B58D3D2B /* Pods_SimpleGithubSearch.framework */; };
 /* End PBXBuildFile section */
@@ -57,6 +59,8 @@
 		2B86D40126F90F4700173129 /* GithubSearchFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubSearchFactory.swift; sourceTree = "<group>"; };
 		2B86D40426F90F7900173129 /* GithubSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubSearchViewController.swift; sourceTree = "<group>"; };
 		2B86D40526F90F7900173129 /* GithubSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GithubSearchViewController.xib; sourceTree = "<group>"; };
+		2B86D40826F914AB00173129 /* GithubRepositorie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepositorie.swift; sourceTree = "<group>"; };
+		2B86D40A26F95F6300173129 /* GithubRepositorieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepositorieResponse.swift; sourceTree = "<group>"; };
 		57463456024E7C3603B368FB /* Pods-SimpleGithubSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleGithubSearch.debug.xcconfig"; path = "Target Support Files/Pods-SimpleGithubSearch/Pods-SimpleGithubSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		5CEA7F70A9750374C369ABB3 /* Pods-SimpleGithubSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleGithubSearch.release.xcconfig"; path = "Target Support Files/Pods-SimpleGithubSearch/Pods-SimpleGithubSearch.release.xcconfig"; sourceTree = "<group>"; };
 		83FCC049E3748E85B58D3D2B /* Pods_SimpleGithubSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleGithubSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,6 +226,8 @@
 		2B86D3FB26F285B000173129 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				2B86D40826F914AB00173129 /* GithubRepositorie.swift */,
+				2B86D40A26F95F6300173129 /* GithubRepositorieResponse.swift */,
 			);
 			name = DTO;
 			sourceTree = "<group>";
@@ -412,8 +418,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B86D40626F90F7900173129 /* GithubSearchViewController.swift in Sources */,
+				2B86D40B26F95F6300173129 /* GithubRepositorieResponse.swift in Sources */,
 				2B86D3BC26F262D400173129 /* ViewController.swift in Sources */,
 				2B86D3FD26F2866D00173129 /* SearchRepositories.swift in Sources */,
+				2B86D40926F914AB00173129 /* GithubRepositorie.swift in Sources */,
 				2B86D3B826F262D400173129 /* AppDelegate.swift in Sources */,
 				2B86D3FF26F28C2A00173129 /* SearchRepositoriesViewModel.swift in Sources */,
 				2B86D3F526F270A300173129 /* GithubApiEndpoints.swift in Sources */,
@@ -596,7 +604,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -618,7 +626,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
